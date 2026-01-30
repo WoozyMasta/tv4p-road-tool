@@ -88,6 +88,13 @@ func extractParts(list []Entry) []RoadPart {
 
 // findRoadTypesList finds the road types list in a byte slice.
 func findRoadTypesList(data []byte) (roadTypesMeta, uint32, []Entry, error) {
+	type candidate struct {
+		meta    roadTypesMeta
+		count   uint32
+		entries []Entry
+	}
+
+	var candidates []candidate
 	for i := 0; i+11 < len(data); i++ {
 		if data[i] != 0x88 || data[i+1] != 0x00 || data[i+2] != 0x0C {
 			continue
@@ -119,14 +126,41 @@ func findRoadTypesList(data []byte) (roadTypesMeta, uint32, []Entry, error) {
 			}
 		}
 
-		if found {
-			return roadTypesMeta{
-				Start:        i,
-				ListLen:      listLen,
-				EntriesStart: pos,
-				EntriesLen:   entriesLen,
-			}, countU32, entries, nil
+		meta := roadTypesMeta{
+			Start:        i,
+			ListLen:      listLen,
+			EntriesStart: pos,
+			EntriesLen:   entriesLen,
 		}
+		candidates = append(candidates, candidate{
+			meta:    meta,
+			count:   countU32,
+			entries: entries,
+		})
+
+		if found {
+			return meta, countU32, entries, nil
+		}
+	}
+
+	if len(candidates) == 1 {
+		c := candidates[0]
+		return c.meta, c.count, c.entries, nil
+	}
+
+	if len(candidates) > 1 {
+		var empty []candidate
+		for _, c := range candidates {
+			if c.count == 0 && c.meta.ListLen == 4 {
+				empty = append(empty, c)
+			}
+		}
+		if len(empty) == 1 {
+			c := empty[0]
+			return c.meta, c.count, c.entries, nil
+		}
+
+		return roadTypesMeta{}, 0, nil, fmt.Errorf("road types list not found (ambiguous: %d lists)", len(candidates))
 	}
 
 	return roadTypesMeta{}, 0, nil, errors.New("road types list not found")
