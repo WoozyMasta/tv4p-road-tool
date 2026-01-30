@@ -89,9 +89,9 @@ func extractParts(list []Entry) []RoadPart {
 // findRoadTypesList finds the road types list in a byte slice.
 func findRoadTypesList(data []byte) (roadTypesMeta, uint32, []Entry, error) {
 	type candidate struct {
+		entries []Entry
 		meta    roadTypesMeta
 		count   uint32
-		entries []Entry
 	}
 
 	var candidates []candidate
