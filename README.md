@@ -64,7 +64,7 @@ but avoid touching fields you don’t understand.
 
 > [!IMPORTANT]  
 > Road Tool requires **MLOD** road models (not ODOL).  
-> Use the MLOD road parts from `DayZ-Misc` and put them into your game root:
+> Use the MLOD road parts from [DayZ-Misc] and put them into your game root:
 >
 > * `dz/structures/roads/parts`
 > * `dz/structures_bliss/roads/parts`
@@ -108,3 +108,5 @@ but not written to tv4p yet.
   in corner/terminator parts.
 * IDs must be unique;
   the tool generates deterministic IDs and avoids collisions.
+
+[DayZ-Misc]: https://github.com/BohemiaInteractive/DayZ-Misc
