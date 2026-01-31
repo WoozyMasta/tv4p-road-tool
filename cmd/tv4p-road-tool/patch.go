@@ -14,9 +14,9 @@ type patchCmd struct {
 		Output string `positional-arg-name:"OUT" description:"Output tv4p file (default: overwrite input)"`
 	} `positional-args:"true"`
 
-	Scope         string `short:"s" long:"scope" choice:"all" choice:"roads" choice:"crossroads" default:"all" description:"What to patch: roads, crossroads, or all"`
-	Append        bool   `short:"a" long:"append" description:"Append to existing road types instead of overwriting"`
-	AllCrossroads bool   `long:"all-crossroads" description:"Write all crossroad definitions. Default behavior is to write only defaults (one per road type) to avoid Terrain Builder crossroad variant issues."`
+	Scope        string `short:"s" long:"scope" choice:"all" choice:"roads" choice:"crossroads" default:"all" description:"What to patch: roads, crossroads, or all"`
+	Append       bool   `short:"a" long:"append" description:"Append to existing road types instead of overwriting"`
+	DefaultsOnly bool   `long:"defaults-only" description:"Write only default crossroad definitions (one per road type)."`
 }
 
 // Execute patches the road types config into the input tv4p file.
@@ -45,7 +45,7 @@ func (c *patchCmd) Execute(_ []string) error {
 
 	// By default, only write one (default) crossroad per road type.
 	// Terrain Builder often ignores crossroad variant selection and behaves as if it uses 0x89[roadTypeIndex].
-	if scope.IncludesCrossroads() && cfg.CrossroadTypes != nil && !c.AllCrossroads {
+	if scope.IncludesCrossroads() && cfg.CrossroadTypes != nil && c.DefaultsOnly {
 		cfg.CrossroadTypes = selectDefaultCrossroads(cfg.CrossroadTypes, cfg.Types)
 	}
 

@@ -93,11 +93,11 @@ Apply either an extracted config or a generated config to a `.tv4p` file.
 .\tv4p-road-tool.exe patch myworld.tv4p roads-generated.yaml myworld-patched.tv4p
 ```
 
-By default, patching will write **only default crossroads** (one per road type).
-If you really want to write all crossroad definitions, use:
+By default, patching will write **all crossroad definitions**.
+If you want to write only defaults (one per road type), use:
 
 ```shell
-./tv4p-road-tool patch --all-crossroads myworld.tv4p roads-generated.yaml myworld-patched.tv4p
+./tv4p-road-tool patch --defaults-only myworld.tv4p roads-generated.yaml myworld-patched.tv4p
 ```
 
 You can also control what is processed in all commands:

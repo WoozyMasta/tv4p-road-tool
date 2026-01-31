@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning][].
 * Crossroads support `crossroad_types` with `default` selection and validation.
 * `--scope=roads|crossroads|all` flag for `extract`, `generate`, and `patch`.
 * `extract --portable` flag to export a clean, ID-free config.
-* `patch --all-crossroads` flag (default patches only defaults,
+* `patch --defaults-only` flag (optional workaround to patch only defaults,
   one per road type).
 
 [0.1.1]: https://github.com/WoozyMasta/tv4p-road-tool/compare/v0.1.0...v0.1.1
