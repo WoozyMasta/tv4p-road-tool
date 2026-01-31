@@ -1,0 +1,1264 @@
+crossroad_types:
+    - color:
+        a: 255
+        b: 102
+        g: 91
+        r: 84
+      color_custom: true
+      connections:
+        A: asf1
+        B: asf1
+        C: asf2
+      default: asf1
+      model: P:\DZ\structures\roads\Parts\kr_t_asf1_asf2.p3d
+      name: kr_t_asf1_asf2
+    - color:
+        a: 255
+        b: 97
+        g: 88
+        r: 86
+      color_custom: true
+      connections:
+        A: asf1
+        B: asf1
+        C: asf3
+      model: P:\DZ\structures\roads\Parts\kr_t_asf1_asf3.p3d
+      name: kr_t_asf1_asf3
+    - color:
+        a: 255
+        b: 92
+        g: 105
+        r: 112
+      color_custom: true
+      connections:
+        A: asf1
+        B: asf1
+        C: city
+      model: P:\DZ\structures\roads\Parts\kr_t_asf1_city.p3d
+      name: kr_t_asf1_city
+    - color:
+        a: 255
+        b: 82
+        g: 86
+        r: 90
+      color_custom: true
+      connections:
+        A: asf2
+        B: asf2
+        C: asf2
+      default: asf2
+      model: P:\DZ\structures\roads\Parts\kr_t_asf2_asf2.p3d
+      name: kr_t_asf2_asf2
+    - color:
+        a: 255
+        b: 77
+        g: 84
+        r: 91
+      color_custom: true
+      connections:
+        A: asf2
+        B: asf2
+        C: asf3
+      model: P:\DZ\structures\roads\Parts\kr_t_asf2_asf3.p3d
+      name: kr_t_asf2_asf3
+    - color:
+        a: 255
+        b: 72
+        g: 81
+        r: 92
+      color_custom: true
+      connections:
+        A: asf3
+        B: asf3
+        C: asf2
+      default: asf3
+      model: P:\DZ\structures\roads\Parts\kr_t_asf3_asf2.p3d
+      name: kr_t_asf3_asf2
+    - color:
+        a: 255
+        b: 67
+        g: 78
+        r: 93
+      color_custom: true
+      connections:
+        A: asf3
+        B: asf3
+        C: asf3
+      model: P:\DZ\structures\roads\Parts\kr_t_asf3_asf3.p3d
+      name: kr_t_asf3_asf3
+    - color:
+        a: 255
+        b: 58
+        g: 75
+        r: 97
+      color_custom: true
+      connections:
+        A: asf3
+        B: asf3
+        C: mud
+      model: P:\DZ\structures\roads\Parts\kr_t_asf3_mud.p3d
+      name: kr_t_asf3_mud
+    - color:
+        a: 255
+        b: 57
+        g: 111
+        r: 146
+      color_custom: true
+      connections:
+        A: city
+        B: city
+        C: asf3
+      default: city
+      model: P:\DZ\structures\roads\Parts\kr_t_city_asf3.p3d
+      name: kr_t_city_asf3
+    - color:
+        a: 255
+        b: 52
+        g: 127
+        r: 172
+      color_custom: true
+      connections:
+        A: city
+        B: city
+        C: city
+      model: P:\DZ\structures\roads\Parts\kr_t_city_city.p3d
+      name: kr_t_city_city
+    - color:
+        a: 255
+        b: 41
+        g: 67
+        r: 105
+      color_custom: true
+      connections:
+        A: mud
+        B: mud
+        C: mud
+      default: mud
+      model: P:\DZ\structures\roads\Parts\kr_t_mud_mud.p3d
+      name: kr_t_mud_mud
+    - color:
+        a: 255
+        b: 90
+        g: 86
+        r: 88
+      color_custom: true
+      connections:
+        A: asf1
+        B: asf1
+        C: asf3
+        D: asf3
+      model: P:\DZ\structures\roads\Parts\kr_x_asf1_asf3.p3d
+      name: kr_x_asf1_asf3
+    - color:
+        a: 255
+        b: 82
+        g: 111
+        r: 127
+      color_custom: true
+      connections:
+        A: asf1
+        B: asf1
+        C: city
+        D: city
+      model: P:\DZ\structures\roads\Parts\kr_x_asf1_city.p3d
+      name: kr_x_asf1_city
+    - color:
+        a: 255
+        b: 75
+        g: 82
+        r: 92
+      color_custom: true
+      connections:
+        A: asf2
+        B: asf2
+        C: asf3
+        D: asf3
+      model: P:\DZ\structures\roads\Parts\kr_x_asf2_asf3.p3d
+      name: kr_x_asf2_asf3
+    - color:
+        a: 255
+        b: 52
+        g: 127
+        r: 172
+      color_custom: true
+      connections:
+        A: city
+        B: city
+        C: city
+        D: city
+      model: P:\DZ\structures\roads\Parts\kr_x_city_city.p3d
+      name: kr_x_city_city
+    - color:
+        a: 255
+        b: 56
+        g: 115
+        r: 153
+      color_custom: true
+      connections:
+        A: city
+        B: city
+        C: city
+        D: asf3
+      model: P:\DZ\structures\roads\Parts\kr_x_city_city_asf3.p3d
+      name: kr_x_city_city_asf3
+road_types:
+    - corner_parts:
+        - name: asf1_0 2000
+          object_file: dz\structures\roads\parts\asf1_0 2000.p3d
+          type: 20
+        - name: asf1_1 1000
+          object_file: dz\structures\roads\parts\asf1_1 1000.p3d
+          type: 20
+        - name: asf1_10 100
+          object_file: dz\structures\roads\parts\asf1_10 100.p3d
+          type: 20
+        - name: asf1_10 25
+          object_file: dz\structures\roads\parts\asf1_10 25.p3d
+          type: 20
+        - name: asf1_10 50
+          object_file: dz\structures\roads\parts\asf1_10 50.p3d
+          type: 20
+        - name: asf1_10 75
+          object_file: dz\structures\roads\parts\asf1_10 75.p3d
+          type: 20
+        - name: asf1_15 75
+          object_file: dz\structures\roads\parts\asf1_15 75.p3d
+          type: 20
+        - name: asf1_22 50
+          object_file: dz\structures\roads\parts\asf1_22 50.p3d
+          type: 20
+        - name: asf1_30 25
+          object_file: dz\structures\roads\parts\asf1_30 25.p3d
+          type: 20
+        - name: asf1_60 10
+          object_file: dz\structures\roads\parts\asf1_60 10.p3d
+          type: 20
+        - name: asf1_7 100
+          object_file: dz\structures\roads\parts\asf1_7 100.p3d
+          type: 20
+      key_parts_color:
+        a: 255
+        b: 110
+        g: 80
+        r: 60
+      key_parts_custom: true
+      name: asf1
+      normal_parts_color:
+        a: 255
+        b: 150
+        g: 125
+        r: 110
+      normal_parts_custom: true
+      starting_parts:
+        - name: asf1_12
+          object_file: dz\structures\roads\parts\asf1_12.p3d
+          type: 19
+        - name: asf1_25
+          object_file: dz\structures\roads\parts\asf1_25.p3d
+          type: 19
+        - name: asf1_6
+          object_file: dz\structures\roads\parts\asf1_6.p3d
+          type: 19
+        - name: asf1_6_crosswalk
+          object_file: dz\structures\roads\parts\asf1_6_crosswalk.p3d
+          type: 19
+      terminator_parts:
+        - name: asf1_6konec
+          object_file: dz\structures\roads\parts\asf1_6konec.p3d
+          type: 22
+      type: 18
+    - corner_parts:
+        - name: asf1enoch_0 2000
+          object_file: dz\structures_bliss\roads\parts\asf1enoch_0 2000.p3d
+          type: 20
+        - name: asf1enoch_1 1000
+          object_file: dz\structures_bliss\roads\parts\asf1enoch_1 1000.p3d
+          type: 20
+        - name: asf1enoch_10 100
+          object_file: dz\structures_bliss\roads\parts\asf1enoch_10 100.p3d
+          type: 20
+        - name: asf1enoch_10 25
+          object_file: dz\structures_bliss\roads\parts\asf1enoch_10 25.p3d
+          type: 20
+        - name: asf1enoch_10 50
+          object_file: dz\structures_bliss\roads\parts\asf1enoch_10 50.p3d
+          type: 20
+        - name: asf1enoch_10 75
+          object_file: dz\structures_bliss\roads\parts\asf1enoch_10 75.p3d
+          type: 20
+        - name: asf1enoch_15 75
+          object_file: dz\structures_bliss\roads\parts\asf1enoch_15 75.p3d
+          type: 20
+        - name: asf1enoch_22 50
+          object_file: dz\structures_bliss\roads\parts\asf1enoch_22 50.p3d
+          type: 20
+        - name: asf1enoch_30 25
+          object_file: dz\structures_bliss\roads\parts\asf1enoch_30 25.p3d
+          type: 20
+        - name: asf1enoch_60 10
+          object_file: dz\structures_bliss\roads\parts\asf1enoch_60 10.p3d
+          type: 20
+        - name: asf1enoch_7 100
+          object_file: dz\structures_bliss\roads\parts\asf1enoch_7 100.p3d
+          type: 20
+      key_parts_color:
+        a: 255
+        b: 110
+        g: 94
+        r: 60
+      key_parts_custom: true
+      name: asf1enoch
+      normal_parts_color:
+        a: 255
+        b: 150
+        g: 145
+        r: 110
+      normal_parts_custom: true
+      starting_parts:
+        - name: asf1enoch_12
+          object_file: dz\structures_bliss\roads\parts\asf1enoch_12.p3d
+          type: 19
+        - name: asf1enoch_25
+          object_file: dz\structures_bliss\roads\parts\asf1enoch_25.p3d
+          type: 19
+        - name: asf1enoch_6
+          object_file: dz\structures_bliss\roads\parts\asf1enoch_6.p3d
+          type: 19
+      terminator_parts:
+        - name: asf1enoch_6konec
+          object_file: dz\structures_bliss\roads\parts\asf1enoch_6konec.p3d
+          type: 22
+      type: 18
+    - corner_parts:
+        - name: asf1sakhal_dashedline_0 2000
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_dashedline_0 2000.p3d
+          type: 20
+        - name: asf1sakhal_dashedline_1 1000
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_dashedline_1 1000.p3d
+          type: 20
+        - name: asf1sakhal_dashedline_10 100
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_dashedline_10 100.p3d
+          type: 20
+        - name: asf1sakhal_dashedline_10 25
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_dashedline_10 25.p3d
+          type: 20
+        - name: asf1sakhal_dashedline_10 50
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_dashedline_10 50.p3d
+          type: 20
+        - name: asf1sakhal_dashedline_10 75
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_dashedline_10 75.p3d
+          type: 20
+        - name: asf1sakhal_dashedline_15 75
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_dashedline_15 75.p3d
+          type: 20
+        - name: asf1sakhal_dashedline_22 50
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_dashedline_22 50.p3d
+          type: 20
+        - name: asf1sakhal_dashedline_30 25
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_dashedline_30 25.p3d
+          type: 20
+        - name: asf1sakhal_dashedline_60 10
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_dashedline_60 10.p3d
+          type: 20
+        - name: asf1sakhal_dashedline_7 100
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_dashedline_7 100.p3d
+          type: 20
+      key_parts_color:
+        a: 255
+        b: 128
+        g: 80
+        r: 60
+      key_parts_custom: true
+      name: asf1sakhal_dashedline
+      normal_parts_color:
+        a: 255
+        b: 175
+        g: 125
+        r: 110
+      normal_parts_custom: true
+      starting_parts:
+        - name: asf1sakhal_dashedline_12
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_dashedline_12.p3d
+          type: 19
+        - name: asf1sakhal_dashedline_25
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_dashedline_25.p3d
+          type: 19
+        - name: asf1sakhal_dashedline_6
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_dashedline_6.p3d
+          type: 19
+      terminator_parts:
+        - name: asf1sakhal_dashedline_6konec
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_dashedline_6konec.p3d
+          type: 22
+      type: 18
+    - corner_parts:
+        - name: asf1sakhal_fullLine_0 2000
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_fullline_0 2000.p3d
+          type: 20
+        - name: asf1sakhal_fullLine_1 1000
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_fullline_1 1000.p3d
+          type: 20
+        - name: asf1sakhal_fullLine_10 100
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_fullline_10 100.p3d
+          type: 20
+        - name: asf1sakhal_fullLine_10 25
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_fullline_10 25.p3d
+          type: 20
+        - name: asf1sakhal_fullLine_10 50
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_fullline_10 50.p3d
+          type: 20
+        - name: asf1sakhal_fullLine_10 75
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_fullline_10 75.p3d
+          type: 20
+        - name: asf1sakhal_fullLine_15 75
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_fullline_15 75.p3d
+          type: 20
+        - name: asf1sakhal_fullLine_22 50
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_fullline_22 50.p3d
+          type: 20
+        - name: asf1sakhal_fullLine_30 25
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_fullline_30 25.p3d
+          type: 20
+        - name: asf1sakhal_fullLine_60 10
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_fullline_60 10.p3d
+          type: 20
+        - name: asf1sakhal_fullLine_7 100
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_fullline_7 100.p3d
+          type: 20
+      key_parts_color:
+        a: 255
+        b: 128
+        g: 80
+        r: 60
+      key_parts_custom: true
+      name: asf1sakhal_fullLine
+      normal_parts_color:
+        a: 255
+        b: 175
+        g: 125
+        r: 110
+      normal_parts_custom: true
+      starting_parts:
+        - name: asf1sakhal_fullLine_12
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_fullline_12.p3d
+          type: 19
+        - name: asf1sakhal_fullLine_25
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_fullline_25.p3d
+          type: 19
+        - name: asf1sakhal_fullLine_6
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_fullline_6.p3d
+          type: 19
+      terminator_parts:
+        - name: asf1sakhal_fullLine_6konec
+          object_file: dz\structures_sakhal\roads\parts\asf1sakhal_fullline_6konec.p3d
+          type: 22
+      type: 18
+    - corner_parts:
+        - name: asf2_0 2000
+          object_file: dz\structures\roads\parts\asf2_0 2000.p3d
+          type: 20
+        - name: asf2_1 1000
+          object_file: dz\structures\roads\parts\asf2_1 1000.p3d
+          type: 20
+        - name: asf2_10 100
+          object_file: dz\structures\roads\parts\asf2_10 100.p3d
+          type: 20
+        - name: asf2_10 25
+          object_file: dz\structures\roads\parts\asf2_10 25.p3d
+          type: 20
+        - name: asf2_10 50
+          object_file: dz\structures\roads\parts\asf2_10 50.p3d
+          type: 20
+        - name: asf2_10 75
+          object_file: dz\structures\roads\parts\asf2_10 75.p3d
+          type: 20
+        - name: asf2_15 75
+          object_file: dz\structures\roads\parts\asf2_15 75.p3d
+          type: 20
+        - name: asf2_22 50
+          object_file: dz\structures\roads\parts\asf2_22 50.p3d
+          type: 20
+        - name: asf2_30 25
+          object_file: dz\structures\roads\parts\asf2_30 25.p3d
+          type: 20
+        - name: asf2_60 10
+          object_file: dz\structures\roads\parts\asf2_60 10.p3d
+          type: 20
+        - name: asf2_7 100
+          object_file: dz\structures\roads\parts\asf2_7 100.p3d
+          type: 20
+      key_parts_color:
+        a: 255
+        b: 65
+        g: 70
+        r: 70
+      key_parts_custom: true
+      name: asf2
+      normal_parts_color:
+        a: 255
+        b: 110
+        g: 115
+        r: 120
+      normal_parts_custom: true
+      starting_parts:
+        - name: asf2_12
+          object_file: dz\structures\roads\parts\asf2_12.p3d
+          type: 19
+        - name: asf2_25
+          object_file: dz\structures\roads\parts\asf2_25.p3d
+          type: 19
+        - name: asf2_6
+          object_file: dz\structures\roads\parts\asf2_6.p3d
+          type: 19
+        - name: asf2_6_crosswalk
+          object_file: dz\structures\roads\parts\asf2_6_crosswalk.p3d
+          type: 19
+      terminator_parts:
+        - name: asf2_6konec
+          object_file: dz\structures\roads\parts\asf2_6konec.p3d
+          type: 22
+      type: 18
+    - corner_parts:
+        - name: asf2enoch_0 2000
+          object_file: dz\structures_bliss\roads\parts\asf2enoch_0 2000.p3d
+          type: 20
+        - name: asf2enoch_1 1000
+          object_file: dz\structures_bliss\roads\parts\asf2enoch_1 1000.p3d
+          type: 20
+        - name: asf2enoch_10 100
+          object_file: dz\structures_bliss\roads\parts\asf2enoch_10 100.p3d
+          type: 20
+        - name: asf2enoch_10 25
+          object_file: dz\structures_bliss\roads\parts\asf2enoch_10 25.p3d
+          type: 20
+        - name: asf2enoch_10 50
+          object_file: dz\structures_bliss\roads\parts\asf2enoch_10 50.p3d
+          type: 20
+        - name: asf2enoch_10 75
+          object_file: dz\structures_bliss\roads\parts\asf2enoch_10 75.p3d
+          type: 20
+        - name: asf2enoch_15 75
+          object_file: dz\structures_bliss\roads\parts\asf2enoch_15 75.p3d
+          type: 20
+        - name: asf2enoch_22 50
+          object_file: dz\structures_bliss\roads\parts\asf2enoch_22 50.p3d
+          type: 20
+        - name: asf2enoch_30 25
+          object_file: dz\structures_bliss\roads\parts\asf2enoch_30 25.p3d
+          type: 20
+        - name: asf2enoch_60 10
+          object_file: dz\structures_bliss\roads\parts\asf2enoch_60 10.p3d
+          type: 20
+        - name: asf2enoch_7 100
+          object_file: dz\structures_bliss\roads\parts\asf2enoch_7 100.p3d
+          type: 20
+      key_parts_color:
+        a: 255
+        b: 65
+        g: 84
+        r: 70
+      key_parts_custom: true
+      name: asf2enoch
+      normal_parts_color:
+        a: 255
+        b: 110
+        g: 135
+        r: 120
+      normal_parts_custom: true
+      starting_parts:
+        - name: asf2enoch_12
+          object_file: dz\structures_bliss\roads\parts\asf2enoch_12.p3d
+          type: 19
+        - name: asf2enoch_25
+          object_file: dz\structures_bliss\roads\parts\asf2enoch_25.p3d
+          type: 19
+        - name: asf2enoch_6
+          object_file: dz\structures_bliss\roads\parts\asf2enoch_6.p3d
+          type: 19
+      terminator_parts:
+        - name: asf2enoch_6konec
+          object_file: dz\structures_bliss\roads\parts\asf2enoch_6konec.p3d
+          type: 22
+      type: 18
+    - corner_parts:
+        - name: asf2sakhal_0 2000
+          object_file: dz\structures_sakhal\roads\parts\asf2sakhal_0 2000.p3d
+          type: 20
+        - name: asf2sakhal_1 1000
+          object_file: dz\structures_sakhal\roads\parts\asf2sakhal_1 1000.p3d
+          type: 20
+        - name: asf2sakhal_10 100
+          object_file: dz\structures_sakhal\roads\parts\asf2sakhal_10 100.p3d
+          type: 20
+        - name: asf2sakhal_10 25
+          object_file: dz\structures_sakhal\roads\parts\asf2sakhal_10 25.p3d
+          type: 20
+        - name: asf2sakhal_10 50
+          object_file: dz\structures_sakhal\roads\parts\asf2sakhal_10 50.p3d
+          type: 20
+        - name: asf2sakhal_10 75
+          object_file: dz\structures_sakhal\roads\parts\asf2sakhal_10 75.p3d
+          type: 20
+        - name: asf2sakhal_15 75
+          object_file: dz\structures_sakhal\roads\parts\asf2sakhal_15 75.p3d
+          type: 20
+        - name: asf2sakhal_22 50
+          object_file: dz\structures_sakhal\roads\parts\asf2sakhal_22 50.p3d
+          type: 20
+        - name: asf2sakhal_30 25
+          object_file: dz\structures_sakhal\roads\parts\asf2sakhal_30 25.p3d
+          type: 20
+        - name: asf2sakhal_60 10
+          object_file: dz\structures_sakhal\roads\parts\asf2sakhal_60 10.p3d
+          type: 20
+        - name: asf2sakhal_7 100
+          object_file: dz\structures_sakhal\roads\parts\asf2sakhal_7 100.p3d
+          type: 20
+      key_parts_color:
+        a: 255
+        b: 83
+        g: 70
+        r: 70
+      key_parts_custom: true
+      name: asf2sakhal
+      normal_parts_color:
+        a: 255
+        b: 135
+        g: 115
+        r: 120
+      normal_parts_custom: true
+      starting_parts:
+        - name: asf2sakhal_12
+          object_file: dz\structures_sakhal\roads\parts\asf2sakhal_12.p3d
+          type: 19
+        - name: asf2sakhal_25
+          object_file: dz\structures_sakhal\roads\parts\asf2sakhal_25.p3d
+          type: 19
+        - name: asf2sakhal_6
+          object_file: dz\structures_sakhal\roads\parts\asf2sakhal_6.p3d
+          type: 19
+      terminator_parts: null
+      type: 18
+    - corner_parts:
+        - name: asf3_0 2000
+          object_file: dz\structures\roads\parts\asf3_0 2000.p3d
+          type: 20
+        - name: asf3_1 1000
+          object_file: dz\structures\roads\parts\asf3_1 1000.p3d
+          type: 20
+        - name: asf3_10 100
+          object_file: dz\structures\roads\parts\asf3_10 100.p3d
+          type: 20
+        - name: asf3_10 25
+          object_file: dz\structures\roads\parts\asf3_10 25.p3d
+          type: 20
+        - name: asf3_10 50
+          object_file: dz\structures\roads\parts\asf3_10 50.p3d
+          type: 20
+        - name: asf3_10 75
+          object_file: dz\structures\roads\parts\asf3_10 75.p3d
+          type: 20
+        - name: asf3_15 75
+          object_file: dz\structures\roads\parts\asf3_15 75.p3d
+          type: 20
+        - name: asf3_22 50
+          object_file: dz\structures\roads\parts\asf3_22 50.p3d
+          type: 20
+        - name: asf3_30 25
+          object_file: dz\structures\roads\parts\asf3_30 25.p3d
+          type: 20
+        - name: asf3_60 10
+          object_file: dz\structures\roads\parts\asf3_60 10.p3d
+          type: 20
+        - name: asf3_7 100
+          object_file: dz\structures\roads\parts\asf3_7 100.p3d
+          type: 20
+      key_parts_color:
+        a: 255
+        b: 45
+        g: 60
+        r: 75
+      key_parts_custom: true
+      name: asf3
+      normal_parts_color:
+        a: 255
+        b: 90
+        g: 105
+        r: 125
+      normal_parts_custom: true
+      starting_parts:
+        - name: asf3_12
+          object_file: dz\structures\roads\parts\asf3_12.p3d
+          type: 19
+        - name: asf3_25
+          object_file: dz\structures\roads\parts\asf3_25.p3d
+          type: 19
+        - name: asf3_6
+          object_file: dz\structures\roads\parts\asf3_6.p3d
+          type: 19
+      terminator_parts:
+        - name: asf3_6konec
+          object_file: dz\structures\roads\parts\asf3_6konec.p3d
+          type: 22
+      type: 18
+    - corner_parts:
+        - name: asf3sakhal_0 2000
+          object_file: dz\structures_sakhal\roads\parts\asf3sakhal_0 2000.p3d
+          type: 20
+        - name: asf3sakhal_1 1000
+          object_file: dz\structures_sakhal\roads\parts\asf3sakhal_1 1000.p3d
+          type: 20
+        - name: asf3sakhal_10 100
+          object_file: dz\structures_sakhal\roads\parts\asf3sakhal_10 100.p3d
+          type: 20
+        - name: asf3sakhal_10 25
+          object_file: dz\structures_sakhal\roads\parts\asf3sakhal_10 25.p3d
+          type: 20
+        - name: asf3sakhal_10 50
+          object_file: dz\structures_sakhal\roads\parts\asf3sakhal_10 50.p3d
+          type: 20
+        - name: asf3sakhal_10 75
+          object_file: dz\structures_sakhal\roads\parts\asf3sakhal_10 75.p3d
+          type: 20
+        - name: asf3sakhal_15 75
+          object_file: dz\structures_sakhal\roads\parts\asf3sakhal_15 75.p3d
+          type: 20
+        - name: asf3sakhal_22 50
+          object_file: dz\structures_sakhal\roads\parts\asf3sakhal_22 50.p3d
+          type: 20
+        - name: asf3sakhal_30 25
+          object_file: dz\structures_sakhal\roads\parts\asf3sakhal_30 25.p3d
+          type: 20
+        - name: asf3sakhal_60 10
+          object_file: dz\structures_sakhal\roads\parts\asf3sakhal_60 10.p3d
+          type: 20
+        - name: asf3sakhal_7 100
+          object_file: dz\structures_sakhal\roads\parts\asf3sakhal_7 100.p3d
+          type: 20
+      key_parts_color:
+        a: 255
+        b: 63
+        g: 60
+        r: 75
+      key_parts_custom: true
+      name: asf3sakhal
+      normal_parts_color:
+        a: 255
+        b: 115
+        g: 105
+        r: 125
+      normal_parts_custom: true
+      starting_parts:
+        - name: asf3sakhal_12
+          object_file: dz\structures_sakhal\roads\parts\asf3sakhal_12.p3d
+          type: 19
+        - name: asf3sakhal_25
+          object_file: dz\structures_sakhal\roads\parts\asf3sakhal_25.p3d
+          type: 19
+        - name: asf3sakhal_6
+          object_file: dz\structures_sakhal\roads\parts\asf3sakhal_6.p3d
+          type: 19
+      terminator_parts:
+        - name: asf3sakhal_6konec
+          object_file: dz\structures_sakhal\roads\parts\asf3sakhal_6konec.p3d
+          type: 22
+      type: 18
+    - corner_parts:
+        - name: city_0 2000
+          object_file: dz\structures\roads\parts\city_0 2000.p3d
+          type: 20
+        - name: city_1 1000
+          object_file: dz\structures\roads\parts\city_1 1000.p3d
+          type: 20
+        - name: city_10 100
+          object_file: dz\structures\roads\parts\city_10 100.p3d
+          type: 20
+        - name: city_10 25
+          object_file: dz\structures\roads\parts\city_10 25.p3d
+          type: 20
+        - name: city_10 50
+          object_file: dz\structures\roads\parts\city_10 50.p3d
+          type: 20
+        - name: city_10 75
+          object_file: dz\structures\roads\parts\city_10 75.p3d
+          type: 20
+        - name: city_15 75
+          object_file: dz\structures\roads\parts\city_15 75.p3d
+          type: 20
+        - name: city_22 50
+          object_file: dz\structures\roads\parts\city_22 50.p3d
+          type: 20
+        - name: city_30 25
+          object_file: dz\structures\roads\parts\city_30 25.p3d
+          type: 20
+        - name: city_60 10
+          object_file: dz\structures\roads\parts\city_60 10.p3d
+          type: 20
+        - name: city_7 100
+          object_file: dz\structures\roads\parts\city_7 100.p3d
+          type: 20
+      key_parts_color:
+        a: 255
+        b: 25
+        g: 110
+        r: 170
+      key_parts_custom: true
+      name: city
+      normal_parts_color:
+        a: 255
+        b: 70
+        g: 170
+        r: 230
+      normal_parts_custom: true
+      starting_parts:
+        - name: city_12
+          object_file: dz\structures\roads\parts\city_12.p3d
+          type: 19
+        - name: city_25
+          object_file: dz\structures\roads\parts\city_25.p3d
+          type: 19
+        - name: city_6
+          object_file: dz\structures\roads\parts\city_6.p3d
+          type: 19
+        - name: city_6_crosswalk
+          object_file: dz\structures\roads\parts\city_6_crosswalk.p3d
+          type: 19
+      terminator_parts:
+        - name: city_6konec
+          object_file: dz\structures\roads\parts\city_6konec.p3d
+          type: 22
+      type: 18
+    - corner_parts:
+        - name: grav_0 2000
+          object_file: dz\structures\roads\parts\grav_0 2000.p3d
+          type: 20
+        - name: grav_1 1000
+          object_file: dz\structures\roads\parts\grav_1 1000.p3d
+          type: 20
+        - name: grav_10 100
+          object_file: dz\structures\roads\parts\grav_10 100.p3d
+          type: 20
+        - name: grav_10 25
+          object_file: dz\structures\roads\parts\grav_10 25.p3d
+          type: 20
+        - name: grav_10 50
+          object_file: dz\structures\roads\parts\grav_10 50.p3d
+          type: 20
+        - name: grav_10 75
+          object_file: dz\structures\roads\parts\grav_10 75.p3d
+          type: 20
+        - name: grav_15 75
+          object_file: dz\structures\roads\parts\grav_15 75.p3d
+          type: 20
+        - name: grav_22 50
+          object_file: dz\structures\roads\parts\grav_22 50.p3d
+          type: 20
+        - name: grav_30 25
+          object_file: dz\structures\roads\parts\grav_30 25.p3d
+          type: 20
+        - name: grav_60 10
+          object_file: dz\structures\roads\parts\grav_60 10.p3d
+          type: 20
+        - name: grav_7 100
+          object_file: dz\structures\roads\parts\grav_7 100.p3d
+          type: 20
+      key_parts_color:
+        a: 255
+        b: 40
+        g: 80
+        r: 120
+      key_parts_custom: true
+      name: grav
+      normal_parts_color:
+        a: 255
+        b: 90
+        g: 145
+        r: 190
+      normal_parts_custom: true
+      starting_parts:
+        - name: grav_12
+          object_file: dz\structures\roads\parts\grav_12.p3d
+          type: 19
+        - name: grav_25
+          object_file: dz\structures\roads\parts\grav_25.p3d
+          type: 19
+        - name: grav_6
+          object_file: dz\structures\roads\parts\grav_6.p3d
+          type: 19
+      terminator_parts:
+        - name: grav_6konec
+          object_file: dz\structures\roads\parts\grav_6konec.p3d
+          type: 22
+      type: 18
+    - corner_parts:
+        - name: gravsakhal_0 2000
+          object_file: dz\structures_sakhal\roads\parts\gravsakhal_0 2000.p3d
+          type: 20
+        - name: gravsakhal_1 1000
+          object_file: dz\structures_sakhal\roads\parts\gravsakhal_1 1000.p3d
+          type: 20
+        - name: gravsakhal_10 100
+          object_file: dz\structures_sakhal\roads\parts\gravsakhal_10 100.p3d
+          type: 20
+        - name: gravsakhal_10 25
+          object_file: dz\structures_sakhal\roads\parts\gravsakhal_10 25.p3d
+          type: 20
+        - name: gravsakhal_10 50
+          object_file: dz\structures_sakhal\roads\parts\gravsakhal_10 50.p3d
+          type: 20
+        - name: gravsakhal_10 75
+          object_file: dz\structures_sakhal\roads\parts\gravsakhal_10 75.p3d
+          type: 20
+        - name: gravsakhal_15 75
+          object_file: dz\structures_sakhal\roads\parts\gravsakhal_15 75.p3d
+          type: 20
+        - name: gravsakhal_22 50
+          object_file: dz\structures_sakhal\roads\parts\gravsakhal_22 50.p3d
+          type: 20
+        - name: gravsakhal_30 25
+          object_file: dz\structures_sakhal\roads\parts\gravsakhal_30 25.p3d
+          type: 20
+        - name: gravsakhal_60 10
+          object_file: dz\structures_sakhal\roads\parts\gravsakhal_60 10.p3d
+          type: 20
+        - name: gravsakhal_7 100
+          object_file: dz\structures_sakhal\roads\parts\gravsakhal_7 100.p3d
+          type: 20
+      key_parts_color:
+        a: 255
+        b: 58
+        g: 80
+        r: 120
+      key_parts_custom: true
+      name: gravsakhal
+      normal_parts_color:
+        a: 255
+        b: 115
+        g: 145
+        r: 190
+      normal_parts_custom: true
+      starting_parts:
+        - name: gravsakhal_12
+          object_file: dz\structures_sakhal\roads\parts\gravsakhal_12.p3d
+          type: 19
+        - name: gravsakhal_25
+          object_file: dz\structures_sakhal\roads\parts\gravsakhal_25.p3d
+          type: 19
+        - name: gravsakhal_6
+          object_file: dz\structures_sakhal\roads\parts\gravsakhal_6.p3d
+          type: 19
+      terminator_parts:
+        - name: gravsakhal_6konec
+          object_file: dz\structures_sakhal\roads\parts\gravsakhal_6konec.p3d
+          type: 22
+      type: 18
+    - corner_parts:
+        - name: mud_0 2000
+          object_file: dz\structures\roads\parts\mud_0 2000.p3d
+          type: 20
+        - name: mud_1 1000
+          object_file: dz\structures\roads\parts\mud_1 1000.p3d
+          type: 20
+        - name: mud_10 100
+          object_file: dz\structures\roads\parts\mud_10 100.p3d
+          type: 20
+        - name: mud_10 25
+          object_file: dz\structures\roads\parts\mud_10 25.p3d
+          type: 20
+        - name: mud_10 50
+          object_file: dz\structures\roads\parts\mud_10 50.p3d
+          type: 20
+        - name: mud_10 75
+          object_file: dz\structures\roads\parts\mud_10 75.p3d
+          type: 20
+        - name: mud_15 75
+          object_file: dz\structures\roads\parts\mud_15 75.p3d
+          type: 20
+        - name: mud_22 50
+          object_file: dz\structures\roads\parts\mud_22 50.p3d
+          type: 20
+        - name: mud_30 25
+          object_file: dz\structures\roads\parts\mud_30 25.p3d
+          type: 20
+        - name: mud_60 10
+          object_file: dz\structures\roads\parts\mud_60 10.p3d
+          type: 20
+        - name: mud_7 100
+          object_file: dz\structures\roads\parts\mud_7 100.p3d
+          type: 20
+      key_parts_color:
+        a: 255
+        b: 25
+        g: 50
+        r: 90
+      key_parts_custom: true
+      name: mud
+      normal_parts_color:
+        a: 255
+        b: 55
+        g: 90
+        r: 140
+      normal_parts_custom: true
+      starting_parts:
+        - name: mud_12
+          object_file: dz\structures\roads\parts\mud_12.p3d
+          type: 19
+        - name: mud_25
+          object_file: dz\structures\roads\parts\mud_25.p3d
+          type: 19
+        - name: mud_6
+          object_file: dz\structures\roads\parts\mud_6.p3d
+          type: 19
+      terminator_parts:
+        - name: mud_6konec
+          object_file: dz\structures\roads\parts\mud_6konec.p3d
+          type: 22
+      type: 18
+    - corner_parts:
+        - name: mudenoch_0 2000
+          object_file: dz\structures_bliss\roads\parts\mudenoch_0 2000.p3d
+          type: 20
+        - name: mudenoch_1 1000
+          object_file: dz\structures_bliss\roads\parts\mudenoch_1 1000.p3d
+          type: 20
+        - name: mudenoch_10 100
+          object_file: dz\structures_bliss\roads\parts\mudenoch_10 100.p3d
+          type: 20
+        - name: mudenoch_10 25
+          object_file: dz\structures_bliss\roads\parts\mudenoch_10 25.p3d
+          type: 20
+        - name: mudenoch_10 50
+          object_file: dz\structures_bliss\roads\parts\mudenoch_10 50.p3d
+          type: 20
+        - name: mudenoch_10 75
+          object_file: dz\structures_bliss\roads\parts\mudenoch_10 75.p3d
+          type: 20
+        - name: mudenoch_15 75
+          object_file: dz\structures_bliss\roads\parts\mudenoch_15 75.p3d
+          type: 20
+        - name: mudenoch_22 50
+          object_file: dz\structures_bliss\roads\parts\mudenoch_22 50.p3d
+          type: 20
+        - name: mudenoch_30 25
+          object_file: dz\structures_bliss\roads\parts\mudenoch_30 25.p3d
+          type: 20
+        - name: mudenoch_60 10
+          object_file: dz\structures_bliss\roads\parts\mudenoch_60 10.p3d
+          type: 20
+        - name: mudenoch_7 100
+          object_file: dz\structures_bliss\roads\parts\mudenoch_7 100.p3d
+          type: 20
+      key_parts_color:
+        a: 255
+        b: 40
+        g: 64
+        r: 90
+      key_parts_custom: true
+      name: mudenoch
+      normal_parts_color:
+        a: 255
+        b: 55
+        g: 110
+        r: 140
+      normal_parts_custom: true
+      starting_parts:
+        - name: mudenoch_12
+          object_file: dz\structures_bliss\roads\parts\mudenoch_12.p3d
+          type: 19
+        - name: mudenoch_25
+          object_file: dz\structures_bliss\roads\parts\mudenoch_25.p3d
+          type: 19
+        - name: mudenoch_6
+          object_file: dz\structures_bliss\roads\parts\mudenoch_6.p3d
+          type: 19
+      terminator_parts:
+        - name: mudenoch_6konec
+          object_file: dz\structures_bliss\roads\parts\mudenoch_6konec.p3d
+          type: 22
+      type: 18
+    - corner_parts:
+        - name: mudsakhal_0 2000
+          object_file: dz\structures_sakhal\roads\parts\mudsakhal_0 2000.p3d
+          type: 20
+        - name: mudsakhal_1 1000
+          object_file: dz\structures_sakhal\roads\parts\mudsakhal_1 1000.p3d
+          type: 20
+        - name: mudsakhal_10 100
+          object_file: dz\structures_sakhal\roads\parts\mudsakhal_10 100.p3d
+          type: 20
+        - name: mudsakhal_10 25
+          object_file: dz\structures_sakhal\roads\parts\mudsakhal_10 25.p3d
+          type: 20
+        - name: mudsakhal_10 50
+          object_file: dz\structures_sakhal\roads\parts\mudsakhal_10 50.p3d
+          type: 20
+        - name: mudsakhal_10 75
+          object_file: dz\structures_sakhal\roads\parts\mudsakhal_10 75.p3d
+          type: 20
+        - name: mudsakhal_15 75
+          object_file: dz\structures_sakhal\roads\parts\mudsakhal_15 75.p3d
+          type: 20
+        - name: mudsakhal_22 50
+          object_file: dz\structures_sakhal\roads\parts\mudsakhal_22 50.p3d
+          type: 20
+        - name: mudsakhal_30 25
+          object_file: dz\structures_sakhal\roads\parts\mudsakhal_30 25.p3d
+          type: 20
+        - name: mudsakhal_60 10
+          object_file: dz\structures_sakhal\roads\parts\mudsakhal_60 10.p3d
+          type: 20
+        - name: mudsakhal_7 100
+          object_file: dz\structures_sakhal\roads\parts\mudsakhal_7 100.p3d
+          type: 20
+      key_parts_color:
+        a: 255
+        b: 43
+        g: 50
+        r: 90
+      key_parts_custom: true
+      name: mudsakhal
+      normal_parts_color:
+        a: 255
+        b: 80
+        g: 90
+        r: 140
+      normal_parts_custom: true
+      starting_parts:
+        - name: mudsakhal_12
+          object_file: dz\structures_sakhal\roads\parts\mudsakhal_12.p3d
+          type: 19
+        - name: mudsakhal_25
+          object_file: dz\structures_sakhal\roads\parts\mudsakhal_25.p3d
+          type: 19
+        - name: mudsakhal_6
+          object_file: dz\structures_sakhal\roads\parts\mudsakhal_6.p3d
+          type: 19
+      terminator_parts:
+        - name: mudsakhal_6konec
+          object_file: dz\structures_sakhal\roads\parts\mudsakhal_6konec.p3d
+          type: 22
+      type: 18
+    - corner_parts:
+        - name: quarrysakhal_0 2000
+          object_file: dz\structures_sakhal\roads\parts\quarrysakhal_0 2000.p3d
+          type: 20
+        - name: quarrysakhal_1 1000
+          object_file: dz\structures_sakhal\roads\parts\quarrysakhal_1 1000.p3d
+          type: 20
+        - name: quarrysakhal_10 100
+          object_file: dz\structures_sakhal\roads\parts\quarrysakhal_10 100.p3d
+          type: 20
+        - name: quarrysakhal_10 25
+          object_file: dz\structures_sakhal\roads\parts\quarrysakhal_10 25.p3d
+          type: 20
+        - name: quarrysakhal_10 50
+          object_file: dz\structures_sakhal\roads\parts\quarrysakhal_10 50.p3d
+          type: 20
+        - name: quarrysakhal_10 75
+          object_file: dz\structures_sakhal\roads\parts\quarrysakhal_10 75.p3d
+          type: 20
+        - name: quarrysakhal_15 75
+          object_file: dz\structures_sakhal\roads\parts\quarrysakhal_15 75.p3d
+          type: 20
+        - name: quarrysakhal_22 50
+          object_file: dz\structures_sakhal\roads\parts\quarrysakhal_22 50.p3d
+          type: 20
+        - name: quarrysakhal_30 25
+          object_file: dz\structures_sakhal\roads\parts\quarrysakhal_30 25.p3d
+          type: 20
+        - name: quarrysakhal_60 10
+          object_file: dz\structures_sakhal\roads\parts\quarrysakhal_60 10.p3d
+          type: 20
+        - name: quarrysakhal_7 100
+          object_file: dz\structures_sakhal\roads\parts\quarrysakhal_7 100.p3d
+          type: 20
+      key_parts_color:
+        a: 255
+        b: 53
+        g: 90
+        r: 140
+      key_parts_custom: true
+      name: quarrysakhal
+      normal_parts_color:
+        a: 255
+        b: 105
+        g: 160
+        r: 210
+      normal_parts_custom: true
+      starting_parts:
+        - name: quarrysakhal_12
+          object_file: dz\structures_sakhal\roads\parts\quarrysakhal_12.p3d
+          type: 19
+        - name: quarrysakhal_25
+          object_file: dz\structures_sakhal\roads\parts\quarrysakhal_25.p3d
+          type: 19
+        - name: quarrysakhal_6
+          object_file: dz\structures_sakhal\roads\parts\quarrysakhal_6.p3d
+          type: 19
+      terminator_parts:
+        - name: quarrysakhal_6konec
+          object_file: dz\structures_sakhal\roads\parts\quarrysakhal_6konec.p3d
+          type: 22
+      type: 18
+    - corner_parts:
+        - name: snowroad_0 2000
+          object_file: dz\structures_sakhal\roads\parts\snowroad_0 2000.p3d
+          type: 20
+        - name: snowroad_1 1000
+          object_file: dz\structures_sakhal\roads\parts\snowroad_1 1000.p3d
+          type: 20
+        - name: snowroad_10 100
+          object_file: dz\structures_sakhal\roads\parts\snowroad_10 100.p3d
+          type: 20
+        - name: snowroad_10 25
+          object_file: dz\structures_sakhal\roads\parts\snowroad_10 25.p3d
+          type: 20
+        - name: snowroad_10 50
+          object_file: dz\structures_sakhal\roads\parts\snowroad_10 50.p3d
+          type: 20
+        - name: snowroad_10 75
+          object_file: dz\structures_sakhal\roads\parts\snowroad_10 75.p3d
+          type: 20
+        - name: snowroad_15 75
+          object_file: dz\structures_sakhal\roads\parts\snowroad_15 75.p3d
+          type: 20
+        - name: snowroad_22 50
+          object_file: dz\structures_sakhal\roads\parts\snowroad_22 50.p3d
+          type: 20
+        - name: snowroad_30 25
+          object_file: dz\structures_sakhal\roads\parts\snowroad_30 25.p3d
+          type: 20
+        - name: snowroad_60 10
+          object_file: dz\structures_sakhal\roads\parts\snowroad_60 10.p3d
+          type: 20
+        - name: snowroad_7 100
+          object_file: dz\structures_sakhal\roads\parts\snowroad_7 100.p3d
+          type: 20
+      key_parts_color:
+        a: 255
+        b: 210
+        g: 150
+        r: 90
+      key_parts_custom: true
+      name: snowroad
+      normal_parts_color:
+        a: 255
+        b: 255
+        g: 220
+        r: 170
+      normal_parts_custom: true
+      starting_parts:
+        - name: snowroad_12
+          object_file: dz\structures_sakhal\roads\parts\snowroad_12.p3d
+          type: 19
+        - name: snowroad_25
+          object_file: dz\structures_sakhal\roads\parts\snowroad_25.p3d
+          type: 19
+        - name: snowroad_6
+          object_file: dz\structures_sakhal\roads\parts\snowroad_6.p3d
+          type: 19
+      terminator_parts:
+        - name: snowroad_6konec
+          object_file: dz\structures_sakhal\roads\parts\snowroad_6konec.p3d
+          type: 22
+      type: 18

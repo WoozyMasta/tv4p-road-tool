@@ -25,6 +25,10 @@ What it does:
 > This tool edits binary `.tv4p` files and can break a project.  
 > Always keep a backup of the original file.
 
+This repo also includes [example.yaml](example.yaml)
+(real output of `generate`), so you can inspect the format
+and even try patching it into your own `.tv4p`.
+
 ## Workflow
 
 ### Extract (backup + reuse)
