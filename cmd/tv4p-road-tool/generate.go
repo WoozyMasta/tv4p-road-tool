@@ -16,7 +16,7 @@ import (
 type generateCmd struct {
 	Format   string `short:"f" long:"format" choice:"yaml" choice:"json" default:"yaml" description:"Output format"`
 	GameRoot string `short:"g" long:"game-root" description:"Game root directory"`
-	Scope    string `long:"scope" choice:"all" choice:"roads" choice:"crossroads" default:"all" description:"What to generate: roads, crossroads, or all"`
+	Scope    string `short:"s" long:"scope" choice:"all" choice:"roads" choice:"crossroads" default:"all" description:"What to generate: roads, crossroads, or all"`
 
 	Args struct {
 		Output string `positional-arg-name:"OUT" description:"Output config file (default: stdout)"`

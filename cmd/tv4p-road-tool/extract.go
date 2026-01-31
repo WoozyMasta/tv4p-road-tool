@@ -14,7 +14,7 @@ type extractCmd struct {
 	} `positional-args:"true"`
 
 	Format   string `short:"f" long:"format" choice:"yaml" choice:"json" default:"yaml" description:"Output format"`
-	Scope    string `long:"scope" choice:"all" choice:"roads" choice:"crossroads" default:"all" description:"What to extract: roads, crossroads, or all"`
+	Scope    string `short:"s" long:"scope" choice:"all" choice:"roads" choice:"crossroads" default:"all" description:"What to extract: roads, crossroads, or all"`
 	Portable bool   `short:"p" long:"portable" description:"Export portable config: no IDs/types, no tv4p raw fields"`
 }
 
