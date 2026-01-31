@@ -3,7 +3,53 @@ package tv4p
 
 // RoadConfig is a serialized config of road types from Terrain Builder.
 type RoadConfig struct {
-	Types []RoadType `json:"road_types"`
+	Types          []RoadType      `json:"road_types"`
+	CrossroadTypes []CrossroadType `json:"crossroad_types,omitempty"`
+}
+
+// CrossroadConnections stores the Road Tool A/B/C/D dropdown selections.
+// Values are road type names (e.g. "asf1", "asf2").
+type CrossroadConnections struct {
+	A string `json:"A,omitempty"` // A road type name (primary road through the crossroad)
+	B string `json:"B,omitempty"` // B road type name (secondary road through the crossroad)
+	C string `json:"C,omitempty"` // C road type name (branch road through the crossroad)
+	D string `json:"D,omitempty"` // D road type name (optional branch road through the crossroad)
+}
+
+// FieldRaw is a JSON/YAML-friendly representation of a tv4p field.
+// Raw bytes are encoded as hex to allow lossless round-trip.
+type FieldRaw struct {
+	Raw  string     `json:"raw,omitempty"`  // hex string (no 0x prefix)
+	List []EntryRaw `json:"list,omitempty"` // nested entries for list fields
+	Tag  uint8      `json:"tag"`            // field tag (e.g. 0x33 name, 0x7C path)
+	Type uint8      `json:"type"`           // field type (e.g. 0x0B string, 0x08 color, 0x0C list, etc.)
+}
+
+// EntryRaw is a JSON/YAML-friendly representation of a tv4p entry.
+type EntryRaw struct {
+	Fields []FieldRaw `json:"fields,omitempty"` // raw fields (strings, colors, lists, flags)
+	ID     uint32     `json:"id,omitempty"`     // entry ID used by Terrain buildEntry
+	Type   uint16     `json:"type"`             // entry type (e.g. 0x12 road type, 0x13 straight, 0x14 corner, 0x16 terminator)
+}
+
+// CrossroadType describes a crossroad definition in Road Tool.
+//
+// `Connections` correspond to the A/B/C/D dropdowns in Terrain Builder.
+// For lossless round-trip, tv4p-specific raw entries are preserved (if extracted).
+type CrossroadType struct {
+	TV4PDef     *EntryRaw            `json:"tv4p_def,omitempty"`    // raw entry from 0x89 list (TypeID 0x17)
+	TV4PLink    *EntryRaw            `json:"tv4p_link,omitempty"`   // raw entry from 0x8A list (TypeID 0x1A)
+	Connections CrossroadConnections `json:"connections,omitempty"` // A/B/C/D road type names
+
+	Name  string `json:"name"`  // e.g. kr_t_asf1_asf2
+	Model string `json:"model"` // e.g. P:\DZ\structures\roads\Parts\kr_t_asf1_asf2.p3d
+
+	// Default marks this crossroad as the default for a specific road type name.
+	// This influences patch ordering for the Terrain Builder "Create crossroad" fallback behavior.
+	Default string `json:"default,omitempty"`
+
+	Color       Color `json:"color"`                  // UI color
+	ColorCustom bool  `json:"color_custom,omitempty"` // if false, TB uses standard color sentinel
 }
 
 // RoadTypesBlock represents the raw road types list block inside a tv4p file.

@@ -19,6 +19,7 @@ What it does:
 * **Generate** a new setup from `.p3d` files on disk.
 * **Patch** a `.tv4p` with either an extracted or generated config.
 * **Auto-colors** road types based on their names (with sensible defaults).
+* **Crossroads support** (DayZ `kr_t_*`/`kr_x_*`) with a safe default workflow.
 
 > [!WARNING]  
 > This tool edits binary `.tv4p` files and can break a project.  
@@ -42,6 +43,12 @@ This is also your safety backup of Road Tool settings.
 
 Extracted configs include internal fields (IDs/types)
 that are **not** present in generated configs.
+
+You can also export a "portable" config (clean, no internal IDs/types):
+
+```shell
+./tv4p-road-tool extract --portable myworld.tv4p roads-portable.yaml
+```
 
 ### Generate (from files)
 
@@ -82,6 +89,19 @@ Apply either an extracted config or a generated config to a `.tv4p` file.
 .\tv4p-road-tool.exe patch myworld.tv4p roads-generated.yaml myworld-patched.tv4p
 ```
 
+By default, patching will write **only default crossroads** (one per road type).
+If you really want to write all crossroad definitions, use:
+
+```shell
+./tv4p-road-tool patch --all-crossroads myworld.tv4p roads-generated.yaml myworld-patched.tv4p
+```
+
+You can also control what is processed in all commands:
+
+* `--scope=roads`
+* `--scope=crossroads`
+* `--scope=all` (default)
+
 > [!CAUTION]  
 > After patching, verify not only Road Tool but also other project data
 > (rasters, layers, templates). If something disappears, restore your backup.
@@ -96,7 +116,42 @@ The generator uses file names to determine part types:
 * `<type>_<len>_crosswalk.p3d` -> crosswalk (still goes into straight parts)
 
 Crossroads (`kr_t_*`, `kr_x_*`) are parsed and logged,
-but not written to tv4p yet.
+and are included in config as `crossroad_types`.
+
+## Crossroads (important)
+
+Terrain Builder has a long-standing crossroad bug/quirk
+(reported for many years): crossroad variant selection in the UI is unreliable.
+In practice, TB behaves as if each road type has only one "default" crossroad.
+
+Recommended workflow:
+
+* Pick **one crossroad per road type** for the whole lifetime of your project.
+* Treat crossroads like regular static objects:
+  choose a single canonical "default" per type.
+* Avoid changing defaults mid-project.
+
+Why this matters:
+
+* If you place crossroads of one type, save the project,
+  then later patch the project to change the default to another type, TB may:
+  * start placing the new type.
+  * and also **convert previously placed crossroads** to the new default.
+
+> [!NOTE]  
+> Even Bohemia’s newer maps appear to avoid `kr_*` crossroads:
+> Livonia and Sakhal ship without `kr_*` crossroad models, and roads are
+> built by overlapping/stacking terminators and regular parts instead.
+
+Technical note (for TB authors / reverse engineers):
+
+* TB stores crossroad definitions in `0x89/0x0C`
+  and placed instances in `0x8A/0x0C`.
+* In multiple experiments,
+  Create behaved as if it uses `0x89[roadTypeIndex]` as a fallback.
+* This tool therefore supports `crossroad_types[].default`
+  and (by default) patches only defaults,
+  to make behavior stable until TB is fixed.
 
 ## What I learned about tv4p (short version)
 

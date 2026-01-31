@@ -27,8 +27,8 @@ func readConfig(path string) (tv4p.RoadConfig, error) {
 	return cfg, nil
 }
 
-// encodeConfig encodes the config to the raw data.
-func encodeConfig(cfg tv4p.RoadConfig, format string) ([]byte, error) {
+// encodeConfig encodes any config-like value to the raw data.
+func encodeConfig(cfg any, format string) ([]byte, error) {
 	switch format {
 	case "yaml":
 		return yaml.Marshal(cfg)
@@ -36,6 +36,38 @@ func encodeConfig(cfg tv4p.RoadConfig, format string) ([]byte, error) {
 		return json.MarshalIndent(cfg, "", "  ")
 	default:
 		return nil, fmt.Errorf("unknown format: %s", format)
+	}
+}
+
+// filterConfigByScope filters the config by scope.
+func filterConfigByScope(cfg tv4p.RoadConfig, scope tv4p.Scope) any {
+	switch scope {
+	case tv4p.ScopeRoads:
+		return struct {
+			Types []tv4p.RoadType `json:"road_types"`
+		}{Types: cfg.Types}
+	case tv4p.ScopeCrossroad:
+		return struct {
+			CrossroadTypes []tv4p.CrossroadType `json:"crossroad_types,omitempty"`
+		}{CrossroadTypes: cfg.CrossroadTypes}
+	default:
+		return cfg
+	}
+}
+
+// filterPortableByScope filters the portable config by scope.
+func filterPortableByScope(cfg tv4p.PortableConfig, scope tv4p.Scope) any {
+	switch scope {
+	case tv4p.ScopeRoads:
+		return struct {
+			Types []tv4p.PortableRoadType `json:"road_types"`
+		}{Types: cfg.Types}
+	case tv4p.ScopeCrossroad:
+		return struct {
+			CrossroadTypes []tv4p.PortableCrossroadType `json:"crossroad_types,omitempty"`
+		}{CrossroadTypes: cfg.CrossroadTypes}
+	default:
+		return cfg
 	}
 }
 
@@ -54,6 +86,31 @@ func printPatchStats(cfg tv4p.RoadConfig, outPath string) {
 	fmt.Printf("starting parts: %d\n", straight)
 	fmt.Printf("corner parts: %d\n", corner)
 	fmt.Printf("terminator parts: %d\n", terminator)
+
+	// Crossroads are only patched when `crossroad_types` is present in the config.
+	// When absent, the patcher preserves existing crossroads in the tv4p file.
+	if cfg.CrossroadTypes == nil {
+		fmt.Printf("crossroads: preserved (not provided in config)\n")
+		return
+	}
+
+	var a, b, c, d int
+	for _, cr := range cfg.CrossroadTypes {
+		if strings.TrimSpace(cr.Connections.A) != "" {
+			a++
+		}
+		if strings.TrimSpace(cr.Connections.B) != "" {
+			b++
+		}
+		if strings.TrimSpace(cr.Connections.C) != "" {
+			c++
+		}
+		if strings.TrimSpace(cr.Connections.D) != "" {
+			d++
+		}
+	}
+	fmt.Printf("crossroads: %d\n", len(cfg.CrossroadTypes))
+	fmt.Printf("crossroad connections: A=%d B=%d C=%d D=%d\n", a, b, c, d)
 }
 
 // resolvePaths resolves the paths relative to the game root.

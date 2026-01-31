@@ -12,7 +12,7 @@ type rootCmd struct {
 	Version  versionCmd  `command:"version" description:"Show version information"`
 	Patch    patchCmd    `command:"patch" description:"Patch road types config into tv4p"`
 	Extract  extractCmd  `command:"extract" description:"Extract road types config from tv4p"`
-	Generate generateCmd `command:"generate" description:"Generate config from disk (not implemented)"`
+	Generate generateCmd `command:"generate" description:"Generate config from disk"`
 }
 
 func main() {

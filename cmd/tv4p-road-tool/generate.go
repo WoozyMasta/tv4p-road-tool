@@ -16,6 +16,7 @@ import (
 type generateCmd struct {
 	Format   string `short:"f" long:"format" choice:"yaml" choice:"json" default:"yaml" description:"Output format"`
 	GameRoot string `short:"g" long:"game-root" description:"Game root directory"`
+	Scope    string `long:"scope" choice:"all" choice:"roads" choice:"crossroads" default:"all" description:"What to generate: roads, crossroads, or all"`
 
 	Args struct {
 		Output string `positional-arg-name:"OUT" description:"Output config file (default: stdout)"`
@@ -43,7 +44,9 @@ func (c *generateCmd) Execute(_ []string) error {
 		return err
 	}
 
-	out, err := encodeConfig(cfg, format)
+	scope := tv4p.Scope(c.Scope)
+	outCfg := filterConfigByScope(cfg, scope)
+	out, err := encodeConfig(outCfg, format)
 	if err != nil {
 		return err
 	}
@@ -59,12 +62,13 @@ func (c *generateCmd) Execute(_ []string) error {
 // generateConfig generates the road types config from the disk.
 func generateConfig(paths []string, gameRoot string, noOgol bool, verbose bool) (tv4p.RoadConfig, error) {
 	types := map[string]*tv4p.RoadType{}
+	crossroads := map[string]*tv4p.CrossroadType{}
 	root := cleanAbs(gameRoot)
 
 	var (
-		totalFiles, filesP3D, filesMLOD, filesODOL             int
-		filesNameReject, filesKindReject, filesCrossroadReject int
-		filesAdded                                             int
+		totalFiles, filesP3D, filesMLOD, filesODOL            int
+		filesNameReject, filesKindReject, filesCrossroadAdded int
+		filesAdded                                            int
 	)
 
 	for _, p := range paths {
@@ -135,9 +139,42 @@ func generateConfig(paths []string, gameRoot string, noOgol bool, verbose bool) 
 			}
 
 			if parsed.Kind == roadparts.Crossroad {
-				filesCrossroadReject++
+				crName, ok := roadparts.ParseCrossroadBase(parsed.Name)
+				if !ok {
+					filesKindReject++
+					if verbose {
+						fmt.Fprintf(os.Stderr, "skip: %s (crossroad name reject)\n", path)
+					}
+					return nil
+				}
+
+				name := parsed.Name
+				if _, exists := crossroads[name]; !exists {
+					modelPath := toCrossroadModelPath(path, root)
+					cr := &tv4p.CrossroadType{
+						Name:  name,
+						Model: modelPath,
+						// Use computed, custom color (can be overridden in YAML if needed).
+						ColorCustom: true,
+						Color:       tv4p.Color{R: 255, G: 0, B: 255, A: 255},
+						Connections: tv4p.CrossroadConnections{
+							A: crName.AB,
+							B: crName.AB,
+							C: crName.C,
+							D: crName.D,
+						},
+					}
+					// For T-shape, D is not used.
+					if crName.Shape == roadparts.CrossroadShapeT {
+						cr.Connections.D = ""
+					}
+
+					crossroads[name] = cr
+				}
+
+				filesCrossroadAdded++
 				if verbose {
-					fmt.Fprintf(os.Stderr, "skip: %s (crossroad)\n", path)
+					fmt.Fprintf(os.Stderr, "add: %s (crossroad)\n", path)
 				}
 				return nil
 			}
@@ -209,9 +246,37 @@ func generateConfig(paths []string, gameRoot string, noOgol bool, verbose bool) 
 	}
 	sort.Slice(list, func(i, j int) bool { return list[i].Name < list[j].Name })
 
+	// Now that we have the final road types list (and therefore palette decisions),
+	// compute crossroad colors from their A/B/C(/D) connections.
+	roadTypeNames := map[string]struct{}{}
+	for _, rt := range list {
+		roadTypeNames[rt.Name] = struct{}{}
+	}
+	for _, cr := range crossroads {
+		colors := crossroadConnectionColors(cr.Connections, roadTypeNames)
+		if len(colors) == 0 {
+			// Fallback UI color if nothing is resolvable.
+			cr.Color = tv4p.Color{R: 255, G: 0, B: 255, A: 255}
+			continue
+		}
+
+		mixed := roadparts.MixColors(colors...)
+		// Shift to a darker shade vs the underlying road colors.
+		cr.Color = roadparts.DarkenColor(mixed, 0.75)
+	}
+
+	var crossList []tv4p.CrossroadType
+	for _, cr := range crossroads {
+		crossList = append(crossList, *cr)
+	}
+	sort.Slice(crossList, func(i, j int) bool { return crossList[i].Name < crossList[j].Name })
+
+	// Mark defaults explicitly (can be edited in YAML later).
+	assignCrossroadDefaults(list, crossList)
+
 	if verbose {
 		fmt.Fprintf(os.Stderr, "summary: files=%d p3d=%d mlod=%d odol=%d name_reject=%d kind_reject=%d crossroad=%d added=%d types=%d\n",
-			totalFiles, filesP3D, filesMLOD, filesODOL, filesNameReject, filesKindReject, filesCrossroadReject, filesAdded, len(list))
+			totalFiles, filesP3D, filesMLOD, filesODOL, filesNameReject, filesKindReject, filesCrossroadAdded, filesAdded, len(list))
 	}
 
 	if filesP3D > 0 && filesMLOD == 0 {
@@ -225,7 +290,104 @@ By default the game ships ODOL (binarized) models, which are not suitable here.
 `)
 	}
 
-	return tv4p.RoadConfig{Types: list}, nil
+	return tv4p.RoadConfig{Types: list, CrossroadTypes: crossList}, nil
+}
+
+// assignCrossroadDefaults assigns the default crossroad for each road type.
+func assignCrossroadDefaults(roadTypes []tv4p.RoadType, crossroads []tv4p.CrossroadType) {
+	// Ensure there is at most one default per road type.
+	// If a crossroad already has Default set (rare in generator), keep it.
+	seen := map[string]struct{}{}
+	for _, cr := range crossroads {
+		if strings.TrimSpace(cr.Default) == "" {
+			continue
+		}
+		seen[strings.ToLower(strings.TrimSpace(cr.Default))] = struct{}{}
+	}
+
+	score := func(cr tv4p.CrossroadType, want string) int {
+		want = strings.ToLower(want)
+		abA := strings.ToLower(cr.Connections.A)
+		abB := strings.ToLower(cr.Connections.B)
+		c := strings.ToLower(cr.Connections.C)
+		d := strings.ToLower(cr.Connections.D)
+
+		shape := 0
+		if strings.HasPrefix(cr.Name, "kr_t_") {
+			shape = 2
+		} else if strings.HasPrefix(cr.Name, "kr_x_") {
+			shape = 1
+		}
+
+		if abA == want && abB == want {
+			return 100 + shape
+		}
+		if abA == want || abB == want {
+			return 80 + shape
+		}
+		if c == want || d == want {
+			return 60 + shape
+		}
+		return -1
+	}
+
+	for _, rt := range roadTypes {
+		want := strings.TrimSpace(rt.Name)
+		if want == "" {
+			continue
+		}
+		key := strings.ToLower(want)
+		if _, ok := seen[key]; ok {
+			continue
+		}
+
+		best := -1
+		bestScore := -1
+		for i := range crossroads {
+			if strings.TrimSpace(crossroads[i].Default) != "" {
+				continue
+			}
+			s := score(crossroads[i], want)
+			if s > bestScore {
+				bestScore = s
+				best = i
+			}
+		}
+		if best >= 0 && bestScore >= 0 {
+			crossroads[best].Default = want
+			seen[key] = struct{}{}
+		}
+	}
+}
+
+// crossroadConnectionColors computes the colors for a crossroad based on its connections.
+func crossroadConnectionColors(c tv4p.CrossroadConnections, known map[string]struct{}) []tv4p.Color {
+	var out []tv4p.Color
+
+	add := func(name string) {
+		name = strings.TrimSpace(name)
+		if name == "" {
+			return
+		}
+		if _, ok := known[name]; !ok {
+			// Still allow palette hashing fallback, but keep behavior stable:
+			// do not include unknown types in the mix.
+			return
+		}
+		normal, _, ok := roadparts.Palette(name)
+		if !ok {
+			return
+		}
+		out = append(out, normal)
+	}
+
+	// Weighting is via duplicates, so A and B contribute twice if same type.
+	add(c.A)
+	add(c.B)
+	add(c.C)
+	add(c.D)
+
+	return out
 }
 
 // partTypeFromKind converts the road part kind to the type.
@@ -253,6 +415,20 @@ func toObjectFile(path string, gameRoot string) string {
 	}
 
 	return strings.ToLower(toBackslashes(abs))
+}
+
+// toCrossroadModelPath converts a crossroad model path to the expected Road Tool format.
+// For crossroads Terrain Builder stores an absolute P:\ style path in observed files.
+func toCrossroadModelPath(path string, gameRoot string) string {
+	abs := cleanAbs(path)
+	if gameRoot != "" {
+		rel, err := filepath.Rel(gameRoot, abs)
+		if err == nil && !strings.HasPrefix(rel, "..") {
+			return toBackslashes(filepath.Join(gameRoot, rel))
+		}
+	}
+
+	return toBackslashes(abs)
 }
 
 // applyRoadPalette applies the road palette to the road type.

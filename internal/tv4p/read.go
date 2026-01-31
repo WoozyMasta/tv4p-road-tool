@@ -258,6 +258,14 @@ func parseEntry(body []byte, absStart int) (Entry, bool) {
 		pos += 3
 
 		switch typ {
+		case 0x05: // u32 (observed in crossroads/special entries)
+			if pos+4 > len(body) {
+				return Entry{}, false
+			}
+
+			ent.Fields = append(ent.Fields, Field{Tag: tag, Type: typ, Raw: body[pos : pos+4]})
+			pos += 4
+
 		case 0x0B: // string
 			if pos+2 > len(body) {
 				return Entry{}, false
@@ -271,6 +279,14 @@ func parseEntry(body []byte, absStart int) (Entry, bool) {
 
 			ent.Fields = append(ent.Fields, Field{Tag: tag, Type: typ, Raw: body[pos : pos+ln]})
 			pos += ln
+
+		case 0x0D: // u32 (observed in crossroads/special entries)
+			if pos+4 > len(body) {
+				return Entry{}, false
+			}
+
+			ent.Fields = append(ent.Fields, Field{Tag: tag, Type: typ, Raw: body[pos : pos+4]})
+			pos += 4
 
 		case 0x09: // byte
 			if pos+1 > len(body) {
@@ -295,6 +311,28 @@ func parseEntry(body []byte, absStart int) (Entry, bool) {
 
 			ent.Fields = append(ent.Fields, Field{Tag: tag, Type: typ, Raw: body[pos : pos+8]})
 			pos += 8
+
+		case 0x15: // byte + N*8 bytes (observed as 0x02 + 2x f64 in crossroads/special entries)
+			if pos+1 > len(body) {
+				return Entry{}, false
+			}
+			n := int(body[pos])
+			total := 1 + n*8
+			if total < 1 || pos+total > len(body) {
+				return Entry{}, false
+			}
+
+			ent.Fields = append(ent.Fields, Field{Tag: tag, Type: typ, Raw: body[pos : pos+total]})
+			pos += total
+
+		case 0x20: // 3 bytes (observed in crossroads/special entries)
+			// In sample files this appears as exactly 3 bytes payload before the next field header.
+			if pos+3 > len(body) {
+				return Entry{}, false
+			}
+
+			ent.Fields = append(ent.Fields, Field{Tag: tag, Type: typ, Raw: body[pos : pos+3]})
+			pos += 3
 
 		case 0x0C: // list
 			if pos+8 > len(body) {

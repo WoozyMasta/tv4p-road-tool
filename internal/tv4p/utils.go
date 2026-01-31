@@ -1,10 +1,7 @@
 package tv4p
 
 import (
-	"encoding/binary"
 	"errors"
-
-	"github.com/cespare/xxhash"
 )
 
 // readU16 reads a 16-bit integer from a byte slice.
@@ -32,18 +29,6 @@ func boolByte(v bool) byte {
 	}
 
 	return 0
-}
-
-// hash32 builds a deterministic 32-bit hash.
-func hash32(s string) uint32 {
-	var buf [8]byte
-	h := xxhash.Sum64String(s)
-
-	binary.LittleEndian.PutUint64(buf[:], h)
-	lo := binary.LittleEndian.Uint32(buf[:4])
-	hi := binary.LittleEndian.Uint32(buf[4:])
-
-	return lo ^ hi
 }
 
 // writeU16 writes a 16-bit integer to the configuration.

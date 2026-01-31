@@ -13,7 +13,9 @@ type extractCmd struct {
 		Output string `positional-arg-name:"OUT" description:"Output config file (default: stdout)"`
 	} `positional-args:"true"`
 
-	Format string `short:"f" long:"format" choice:"yaml" choice:"json" default:"yaml" description:"Output format"`
+	Format   string `short:"f" long:"format" choice:"yaml" choice:"json" default:"yaml" description:"Output format"`
+	Scope    string `long:"scope" choice:"all" choice:"roads" choice:"crossroads" default:"all" description:"What to extract: roads, crossroads, or all"`
+	Portable bool   `short:"p" long:"portable" description:"Export portable config: no IDs/types, no tv4p raw fields"`
 }
 
 // Execute extracts the road types config from the input tv4p file.
@@ -28,13 +30,20 @@ func (c *extractCmd) Execute(_ []string) error {
 		return err
 	}
 
-	block, err := tv4p.ParseRoadTypes(data)
+	cfg, err := tv4p.ParseRoadToolConfig(data)
 	if err != nil {
 		return err
 	}
 
-	cfg := tv4p.RoadConfig{Types: block.Types}
-	out, err := encodeConfig(cfg, format)
+	scope := tv4p.Scope(c.Scope)
+	var outCfg any
+	if c.Portable {
+		outCfg = filterPortableByScope(tv4p.ToPortableConfig(cfg), scope)
+	} else {
+		outCfg = filterConfigByScope(cfg, scope)
+	}
+
+	out, err := encodeConfig(outCfg, format)
 	if err != nil {
 		return err
 	}
