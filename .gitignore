@@ -108,3 +108,5 @@ build/
 *.txt
 *.tv4p
 !example.yaml
+!.markdownlint.json
+!.golangci.yml
